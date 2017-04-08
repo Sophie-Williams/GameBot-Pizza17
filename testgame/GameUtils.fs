@@ -1,14 +1,13 @@
-﻿open System
-open Common.Utils
-open Common.Utils.Net
-open FSharpx.Collections
-
- module GameUtils = 
+﻿module GameUtils  
+    open System
+    open Common.Utils
+    open Common.Utils.Net
+    open FSharpx.Collections
     open Net
     open Konsole
 
-    let private host     = "130.211.89.1";//"test.natodia.net"
-    let private port     = 10000
+    let private host     = "salami.pizza"
+    let private port     = 10030
     let private username = "team46"
     let private pass     = "7014a5f0ce"
 
@@ -34,6 +33,7 @@ open FSharpx.Collections
         sprintf "Received unexpected message: %s, while expecting: %s" gotMsg expMsg
         |> UnexpectedMessageException |> raise
 
+    /// Writes line, reads OK and returns tokens list
     let writeLineOk s msg =
         Net.writeLine s msg
         match readTokens s with 
@@ -46,27 +46,16 @@ open FSharpx.Collections
         |> String.concat " "
 
     let wait s =
-        assert (writeLineOkFlat s "WAIT" = "")
-
-        match readFlat s with
-        | "OK" -> ()
-        | m -> unExp m "OK"
-
-    let turnsLeft s =
-        writeLineOkFlat s "TURNS_LEFT" |> int
-
-    //let statusWindow = Window (0, 0, 100, 3, ConsoleColor.Black, ConsoleColor.Magenta)
-
-    //let logsWindow  = 
-    //    Console.CursorVisible <- false
-    //    Window (0, 3, 100, 20, ConsoleColor.Gray, ConsoleColor.Blue)
+        match writeLineOkFlat s "WAIT" with
+        | "" -> 
+            match readFlat s with
+            | "OK" -> ()
+            | m -> unExp m "OK"
+        | "OK" ->
+            ()
+        | m -> printfn "MESSAGE ON WAIT NOT EMPTY %s" m
         
-    //let printStatus s =
-    //    statusWindow.PrintAt(0, 0, turnsLeft s |> sprintf "\rTurns left: %d")
-
-    let log (msg : string) = 
-        ();//logsWindow.WriteLine ("{0}", msg)
-
-    let logPass msg =
-        log msg
-        msg
+    let turnsLeft s =
+        match writeLineOk s "TURNS_LEFT" with 
+        | left::isNew -> int left
+        | lst -> failwith "unexp"

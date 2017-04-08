@@ -12,13 +12,13 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>TestGame</Name>
+    <Name>GameBot</Name>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -708,7 +708,9 @@
       <Paket>True</Paket>
       <Link>paket-files/YoLo.fs</Link>
     </Compile>
-    <Compile Include="TestGame.fs" />
+    <Compile Include="GameUtils.fs" />
+    <Compile Include="Game.fs" />
+    <Compile Include="Bot.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />
   </ItemGroup>
