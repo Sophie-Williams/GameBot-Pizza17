@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.10
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TestGame", "testgame\TestGame.fsproj", "{175E3897-6ABE-4C36-84E3-DA14887638ED}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GameBot", "testgame\GameBot.fsproj", "{175E3897-6ABE-4C36-84E3-DA14887638ED}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Common", "..\..\..\..\Projects\TradingPlatform\Common\Common.fsproj", "{E9E2E415-495B-42A1-AD79-27E08805B0E8}"
 EndProject
